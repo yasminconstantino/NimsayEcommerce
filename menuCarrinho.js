@@ -3,13 +3,15 @@ import { catalogooo, salvarLocalStorage, lerLocalStorage } from "./utilidades";
 const idsProdutoCarrinhoComQuantidade = lerLocalStorage("carrinho") ?? {};
 
 function abrirCarrinho() {
-    document.getElementById("carrinho").classList.remove("right-[-360px]");
-    document.getElementById("carrinho").classList.add("right-[0px]");
+    document.getElementById("carrinho").classList.remove("marginRight-[-360px]");
+    document.getElementById("carrinho").classList.add("marginRight-[0px]");
+    carrinho.style.visibility = "visible";
 }
 
 function fecharCarrinho() {
-    document.getElementById("carrinho").classList.remove("right-[0px]");
-    document.getElementById("carrinho").classList.add("right-[-360px]");
+    document.getElementById("carrinho").classList.remove("marginRight-[0px]");
+    document.getElementById("carrinho").classList.add("marginRight-[-360px]");
+    carrinho.style.visibility = "hidden";
 }
 
 function irParaCheckout() {

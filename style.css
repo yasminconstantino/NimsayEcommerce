@@ -1,0 +1,312 @@
+/*estilo body / resert */
+body {
+    background-color: #e5e5e5;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin: 0;
+    position: sticky;
+}
+
+/*estilo header*/
+
+header {
+    display: flex;
+    background-color: #171717;
+    box-shadow: 0 20px 25px -5px #262626, 0 8px 10px -6px #262626;
+    padding: 16px 32px;
+    justify-content: space-between;
+    position: sticky;
+    top: 0px;
+    z-index: 10;
+}
+
+.logoY {
+    height: 192px;
+}
+
+.abcar {
+    color: #d4d4d4;
+    display: flex;
+    gap: 8px;
+    display: flex;
+    align-items: flex-end;
+    margin: 0 8px;
+}
+
+.opCart, #abrir-carrinho {
+    margin-right: 8px;
+    border-radius: 360px;
+    background-color: #171717;
+    width: 40px;
+    border: none;
+    padding: 4px;
+}
+
+
+.opUser, #user {
+    margin-right: 8px;
+    background-color: #171717;
+    width: 35px;
+    border: none;
+    padding: 4px;
+}
+
+
+/* estilo carrinho*/
+
+#carrinho {
+    position: fixed;
+    right: 0; /* Set right to 0 to keep it on the right side */
+    top: 0; /* Set top to 0 if you want it fixed at the top, adjust as needed */
+    background-color: #171717;
+    width: 360px;
+    height: 100vh;
+    color: #d9d9d9;
+    flex-direction: column;
+    justify-content: space-between;
+    visibility: hidden;
+    z-index: 50;
+    padding: 5px;
+    transition-property: visibility;
+    transition-duration: 200ms;
+    border-left: solid #737373 10px;
+}
+
+
+#carrinho.mostrar {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+
+#abrir-carrinho {
+/* Adicione estas linhas para melhorar a usabilidade */
+cursor: pointer;
+}
+
+#fechar-carrinho {
+/* Adicione estas linhas para melhorar a usabilidade */
+cursor: pointer;
+}
+
+#carrinho.mostrar {
+    visibility: visible;
+    opacity: 1;
+}
+
+#cabecalho-carrinho {
+    display: flex;
+    justify-content: space-between;
+    margin: 4px;
+}
+
+#close {
+    border-radius: 360px;
+    background-color: #171717;
+    width: 25px;
+    padding: 4px;
+}
+
+#fechar-carrinho, .close {
+    border-radius: 360px;
+    width: 25px;
+    background-color: #171717;
+    border: none;
+    padding: 4px;
+}
+
+#produtos-carrinho {
+    height: 250px;
+    color: #737373;
+    padding-top: 0;
+    padding-bottom: 0;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#preco-total {
+    color: #115e59;
+}
+
+#finalizar-compra {
+    background-color: #9474A5;
+    color: #171717;
+    padding: 4px;
+}
+
+/*estilo filtros*/
+
+#filtros {
+    padding: 40px;
+    display: flex;
+}
+.fil1, .fils, .filr {
+    padding: 0 8px;
+}
+
+.al, .sh, .rp {
+    color: #9474A5;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    user-select: none; 
+    cursor: pointer;
+}
+
+.al:hover, .sh:hover, .rp:hover {
+    color: #737373;
+}
+/*
+peer-checked:bg-neutral-950 peer-checked:text-neutral-200 peer-checked:font-bold p-2 rounded-xl select-none cursor-pointer
+*/
+
+
+/*whatever*/
+
+article {
+    display: flex;
+    background-color: #f2f2f2;
+    padding: 8px;
+    border-radius: 8px;
+    position: relative;
+}
+
+
+/*produto*/
+#container-produto {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 40px;
+    justify-content: center;
+    gap: 40px;
+}
+
+.produto {
+    width: 246px;
+    height: 394px;
+    border-radius: 8px;
+    padding: 50px;
+    text-align: center;
+    background-color: #d9d9d9;
+    border: #d4d4d4 solid 5px;
+    transition: transform 0.3s ease; /* Add a smooth transition for the transform property */
+}
+.produto:hover {
+    transform: scale(1.1); /* Scale the product on hover */
+
+}
+
+.produto img {
+    height: 236px;
+    width: 236px;
+    border-radius: 8px;
+}
+
+div .pnome {
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.pnome {
+    color: #171717;
+    font-size: 0.875rem; /* 14px */
+    line-height: 1.25rem; /* 20px */
+}
+.pmarca {
+    color: #a3a3a3;
+    font-size: 0.75rem; /* 12px */
+    line-height: 1rem; /* 16px */
+}
+
+.ppreco {
+    color: #115e59;
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.75rem; /* 28px */
+}
+
+.quanti {
+    display: flex;
+    color: #262626;
+    align-items: flex-end;
+    position: absolute;
+    bottom: 0px;
+    right: 0.5rem; /* 8px */
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.75rem; /* 28px */
+}
+
+#quantidade {
+    margin-left: 0.5rem; /* 8px */
+}
+
+/* form checkout*/
+
+form {
+    display: flex;
+    width: 400px;
+    padding: 40px  20px;
+    gap: 1rem; /* 16px */
+    flex-grow: 1;
+    text-align: center;
+}
+
+#dados-usuario, #pagamento-entrega {
+    background-color: #f2f2f2;
+    width: 600px;
+    border-radius: 0.5rem; /* 8px */
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.dtitu, .ptitu {
+    text-align: center;
+    margin-bottom: 1.25rem; /* 20px */
+    font-weight: 700;
+}
+
+.askdado {
+    display: flex;
+    flex-direction: column;
+    padding: 12px 40px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+}
+
+.nom {
+    font-weight: 700;
+    margin-bottom: 0.5rem; /* 8px */
+    font-size: 0.875rem; /* 14px */
+    line-height: 1.25rem; /* 20px */
+}
+
+#nome, #tel, #email, #numero-cartao, #cvv, #data-expiracao, #cep, #endereco, #numero, #complemento {
+    border-radius: 0.125rem; /* 2px */
+    padding: 8px 4px;
+    border: 2px solid #e5e5e5;
+}
+
+.num-card {
+    font-weight: 700;
+    font-size: 0.875rem; /* 14px */
+    line-height: 1.25rem; /* 20px */
+    margin-bottom: 0.5rem; /* 8px */
+}
+
+.cv {
+    display: flex;
+}
+
+
+header h1 {
+    color: #262626;
+}
+

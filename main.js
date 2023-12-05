@@ -5,8 +5,10 @@ import { atualizarPrecoCarrinho, inicializarCarrinho, renderizarProdutosCarrinho
 
 
 renderizarCatalogo();
-inicializarCarrinho();
 renderizarProdutosCarrinho();
 atualizarPrecoCarrinho();
 inicializarFiltros();
+inicializarCarrinho();
+abrirCarrinho();
+fecharCarrinho();
 
