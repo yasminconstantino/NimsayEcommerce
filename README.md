@@ -1,9 +1,4 @@
-# WebStore
-This is a simple e-commerce, below you can watch it working:
-
-![image](testesite.gif)
-
-  <h1>Nimsay WebStore-site</h1>  <img src="icons/icons8-cart-64.png" width="36"/>
+<h1>Nimsay WebStore-site</h1>  <img src="icons/icons8-cart-64.png" width="36"/>
   <p>This is an e-commerce</p>
 
 ![image](testesite.gif)
