@@ -1,5 +1,5 @@
 <h1>Nimsay Ecommerce</h1>  <img src="icons/icons8-cart-64.png" width="36"/>
-  <p>This is an ecommerce</p>
+  <p>This is a fictional ecommerce</p>
 
 ![image](testesite.gif)
 
@@ -18,7 +18,7 @@
 <section>
   <details>
     <summary>Clique aqui para ler em português</summary>
-    <p>Esse é um ecommerce</p>
+    <p>Esse é um ecommerce fictício</p>
     <p>Você pode acessar a página e ver ela funcionando <a href="https://yasminconstantino.github.io/WebStore-Site/">aqui</a></p>
     <h4>Linguagens e tecnologias utilizadas:</h4>
     <div>
