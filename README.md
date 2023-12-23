@@ -19,7 +19,7 @@
   <details>
     <summary>Clique aqui para ler em português</summary>
     <p>Esse é um e-commerce</p>
-    <p>Você pode acessar a página e ver ela funcionando <a href="https://yasminconstantino.github.io/WebStore-Site/">aqui</a></p>
+        <p>Você pode acessar a página e ver ela funcionando <a href="https://yasminconstantino.github.io/WebStore-Site/">aqui</a></p>
     <h4>Linguagens e tecnologias utilizadas:</h4>
     <div>
         <img src="icons/html.png" width="38"/>
