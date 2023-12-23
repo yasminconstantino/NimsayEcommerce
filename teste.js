@@ -125,7 +125,7 @@ const catalogooo = [
 
 /* pedido */
 
-
+/*
   const elementoPedido = document.createElement("p");
   elementoPedido.classList.add('text-xl', 'text-bold', 'my-4');
   elementoPedido.textContent = new Date(pedidoComData.dataPedido).toLocaleDateString("pt-BR", {
@@ -167,6 +167,82 @@ const catalogooo = [
     }
     
     renderizarHistoricoPedidos();
+*//*
+function criarPedidoHistorico(pedidoComData) {
+  const elementoPedido = document.createElement("p");
+  elementoPedido.classList.add('text-xl', 'text-bold', 'my-4');
+  elementoPedido.textContent = new Date(pedidoComData.dataPedido).toLocaleDateString("pt-BR", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+
+  const main = document.getElementById("mainped"); // Use getElementById para obter o elemento main
+  main.appendChild(elementoPedido); // Use appendChild para adicionar o elemento ao main
+
+  const containerPedidos = document.createElement("section");
+  containerPedidos.id = `container-pedidos-${pedidoComData.dataPedido}`;
+  containerPedidos.classList.add('bg-slate-300', 'p-3', 'rounded-md');
+  main.appendChild(containerPedidos);
+
+  for (const idProduto in pedidoComData.pedido) {
+    desenharProdutoCarrinhoSimples(
+      idProduto,
+      `container-pedidos-${pedidoComData.dataPedido}`,
+      pedidoComData.pedido[idProduto]
+    );
+  }
+}
+
+function renderizarHistoricoPedidos() {
+  const historico = lerLocalStorage("historico");
+  if (historico) {
+    for (const pedidoComData of historico) {
+      criarPedidoHistorico(pedidoComData);
+    }
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  renderizarHistoricoPedidos();
+});
+*//*
+function criarPedidoHistorico(pedidoComData) {
+  const elementoPedido = document.createElement("p");
+  elementoPedido.classList.add('text-xl', 'text-bold', 'my-4');
+  elementoPedido.textContent = new Date(pedidoComData.dataPedido).toLocaleDateString("pt-BR", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+
+  const main = document.getElementById("mainped");
+  main.appendChild(elementoPedido);
+
+  const containerPedidos = document.createElement("section");
+  containerPedidos.id = `container-pedidos-${pedidoComData.dataPedido}`;
+  containerPedidos.classList.add('bg-slate-300', 'p-3', 'rounded-md');
+  main.appendChild(containerPedidos);
+
+  for (const idProduto in pedidoComData.pedido) {
+    desenharProdutoCarrinhoSimples(
+      idProduto,
+      `container-pedidos-${pedidoComData.dataPedido}`,
+      pedidoComData.pedido[idProduto]
+    );
+  }
+}
+
+function renderizarHistoricoPedidos() {
+  const historico = lerLocalStorage("historico");
+  if (historico) {
+    for (const pedidoComData of historico) {
+      criarPedidoHistorico(pedidoComData);
+    }
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  renderizarHistoricoPedidos();
+});*/
 
   /* menu carrinho */
 
@@ -229,6 +305,78 @@ function fecharCarrinho() {
   function atualizarInformacaoQuantidade(idProduto) {
     document.getElementById(`quantidade-${idProduto}`).innerText = idsProdutoCarrinhoComQuantidade[idProduto];
   }
+  // ...
+
+  /*another try*/
+
+function desenharProdutoNoCarrinho(idProduto) {
+  const produto = catalogooo.find((p) => p.id === idProduto);
+  const containerProdutoCarrinho = document.getElementById("produtos-carrinho");
+
+  const elementoArticle = document.createElement("article");
+  const articleClasses = ["flex", "bg-neutral-300", "rounded-lg", "p-2", "relative"];
+
+  for (const articleClass of articleClasses) {
+    elementoArticle.classList.add(articleClass);
+  }
+
+  const cartaoProdutoCarrinho = `
+    <button id="remover-item-${idProduto}" class="absolute top-0 right-1">
+      <i class="fa-solid fa-circle-xmark text-fuchsia-700 hover:text-fuchsia-950"></i>
+    </button>
+    <img src="./assets/img/${produto.imagem}" alt="${produto.nome}" class="h-24 rounded-lg">
+    <div class="flex flex-col p-2 justify-between">
+      <p class="text-neutral-800 text-sm">${produto.nome}</p>
+      <p class="text-neutral-500 text-xs">Tamanho: M</p>
+      <p class="text-green-900 text-lg">$${produto.preco}</p>
+    </div>
+    <div class="flex text-neutral-800 items-end absolute bottom-0 right-1 text-lg">
+      <button id="decrementar-produto-${idProduto}">
+        -
+      </button>
+      <p id="quantidade-${idProduto}" class="ml-2">
+        ${idsProdutoCarrinhoComQuantidade[produto.id]}
+      </p>
+      <button class="ml-2" id="incrementar-produto-${idProduto}">
+        +
+      </button>
+    </div>`;
+
+  elementoArticle.innerHTML = cartaoProdutoCarrinho;
+  containerProdutoCarrinho.appendChild(elementoArticle);
+
+  document.getElementById(`decrementar-produto-${idProduto}`).addEventListener('click', () => decrementarQuantidadeProduto(produto.id));
+  document.getElementById(`incrementar-produto-${idProduto}`).addEventListener('click', () => incrementarQuantidadeProduto(produto.id));
+  document.getElementById(`remover-item-${idProduto}`).addEventListener('click', () => removerDoCarrinho(produto.id));
+}
+
+function renderizarProdutosCarrinho() {
+  const containerProdutoCarrinho = document.getElementById("produtos-carrinho");
+  containerProdutoCarrinho.innerHTML = "";
+  for (const idProduto in idsProdutoCarrinhoComQuantidade) {
+    desenharProdutoNoCarrinho(idProduto);
+  }
+}
+
+function adicionarAoCarrinho(idProduto) {
+  if (idProduto in idsProdutoCarrinhoComQuantidade) {
+    incrementarQuantidadeProduto(idProduto);
+  } else {
+    idsProdutoCarrinhoComQuantidade[idProduto] = 1;
+    salvarLocalStorage("carrinho", idsProdutoCarrinhoComQuantidade);
+  }
+  // Update the cart UI after adding the product
+  renderizarProdutosCarrinho();
+  atualizarPrecoCarrinho();
+}
+
+// ...
+
+// Now, make sure to call the function to render the catalog
+renderizarCatalogo();
+
+// ...
+/*
   
   function desenharProdutoNoCarrinho(idProduto) {
     {
@@ -293,6 +441,9 @@ function fecharCarrinho() {
     desenharProdutoNoCarrinho(idProduto);
     atualizarPrecoCarrinho();
   }
+  */
+
+  // end hereeee
   
   function atualizarPrecoCarrinho() {
     const precoCarrinho = document.getElementById(`preco-total`);
@@ -304,6 +455,18 @@ function fecharCarrinho() {
   
     precoCarrinho.innerText = `Total: $${precoTotalCarrinho}`;
   }
+  /*
+  function atualizarPrecoCarrinho() {
+    const precoCarrinho = document.getElementById("preco-total");
+    let precoTotalCarrinho = 0;
+  
+    for (const idProdutoNoCarrinho in idsProdutoCarrinhoComQuantidade) {
+      const produto = catalogooo.find((p) => p.id === idProdutoNoCarrinho);
+      precoTotalCarrinho += produto.preco * idsProdutoCarrinhoComQuantidade[idProdutoNoCarrinho];
+    }
+  
+    precoCarrinho.innerText = `Total: $${precoTotalCarrinho.toFixed(2)}`;
+  }*/
   
   //<article class="flex bg-neutral-300 rounded-lg p-2 relative"> </article>`
 
@@ -372,7 +535,7 @@ const catalogoProdutos = document.getElementById("container-produto");
 
 /* filtros catalogo */
 
-
+/*
 function exibirTodos() {
   const produtosEscondidos = Array.from(
     catalogoProdutos.getElementsByClassName(`hidden`)
@@ -416,6 +579,58 @@ function esconderRoupa() {
     .getElementById(`exibir-roupa`)
     .addEventListener("click", esconderShoes);
 }
+*/
+// ...
+
+function exibirTodos() {
+  const produtosEscondidos = Array.from(
+    catalogoProdutos.getElementsByClassName("hidden")
+  );
+
+  for (const produto of produtosEscondidos) {
+    produto.classList.remove("hidden");
+  }
+}
+
+function esconderShoes() {
+  exibirTodos();
+  const produtosShoes = Array.from(
+    catalogoProdutos.getElementsByClassName("shoes")
+  );
+
+  for (const produto of produtosShoes) {
+    produto.classList.add("hidden");
+  }
+}
+
+function esconderRoupa() {
+  exibirTodos();
+  const produtosRoupas = Array.from(
+    catalogoProdutos.getElementsByClassName("roupa")
+  );
+
+  for (const produto of produtosRoupas) {
+    produto.classList.add("hidden");
+  }
+}
+
+function inicializarFiltros() {
+  document.getElementById("exibir-todos").addEventListener("click", exibirTodos);
+  document.getElementById("exibir-shoes").addEventListener("click", esconderRoupa);
+  document.getElementById("exibir-roupa").addEventListener("click", esconderShoes);
+}
+
+// ...
+
+// Call the function to set up filter event listeners
+inicializarFiltros();
+
+// ...
+
+// Now, make sure to call the function to render the catalog
+renderizarCatalogo();
+
+// ...
 
 /*cartao produto*/
 
